@@ -1,16 +1,13 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
+  let eaten = props.eaten.find(x => x.id === props.oneSushi.id)
   return (
     <div className="sushi">
       <div className="plate"
-           onClick={/* Give me a callback! */ null}>
+           onClick={ (e) => !eaten && props.buySushi(props.oneSushi) }>
         {
-          /* Tell me if this sushi has been eaten! */
-          false ?
-            null
-          :
-            <img src={props.oneSushi.img_url} width="100%" />
+          !eaten &&  <img src={props.oneSushi.img_url} width="100%" />
         }
       </div>
       <h4 className="sushi-details">

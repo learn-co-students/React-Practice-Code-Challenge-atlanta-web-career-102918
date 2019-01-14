@@ -16,7 +16,7 @@ class SushiContainer extends Component {
     return (
     <Fragment>
       <div className="belt">
-        {shownSushi.map(x => <Sushi oneSushi={x} key={x.id}/>)}
+        {shownSushi.map(x => <Sushi oneSushi={x} key={x.id} buySushi={this.props.buySushi} eaten={this.props.eaten} />)}
         <MoreButton increaseOffset={this.nextOffset} />
       </div>
     </Fragment>
