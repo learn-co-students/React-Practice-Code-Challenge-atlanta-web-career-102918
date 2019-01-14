@@ -8,6 +8,8 @@ const Table = (props) => {
     })
   }
 
+  let eaten = props.sushi.filter(x => x.eaten)
+
   return (
     <Fragment>
       <h1 className="remaining">
@@ -16,7 +18,7 @@ const Table = (props) => {
       <div className="table">
         <div className="stack">
           {
-            renderPlates(props.eaten)
+            renderPlates(eaten)
           }
         </div>
       </div>

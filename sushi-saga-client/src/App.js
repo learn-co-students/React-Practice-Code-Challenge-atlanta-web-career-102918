@@ -13,8 +13,7 @@ class App extends Component {
   //add to list of eaten sushi
   state = {
     sushi: [],
-    budget: 100,
-    eaten: []
+    budget: 100
   }
 
   fetchSushi = () => {
@@ -24,10 +23,14 @@ class App extends Component {
   }
 
   buySushi = (sushi) => {
+    let newSushi = this.state.sushi.map(x => {
+      return x.id === sushi.id ? Object.assign(x, {eaten: true}) : x
+    })
+    
     if(sushi.price <= this.state.budget) {
       this.setState({
         budget: this.state.budget - sushi.price,
-        eaten: this.state.eaten.concat(sushi)
+        sushi: newSushi
        })
     }
   }
@@ -39,8 +42,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer allSushi={this.state.sushi} buySushi={this.buySushi} eaten={this.state.eaten} />
-        <Table budget={this.state.budget} eaten={this.state.eaten} />
+        <SushiContainer allSushi={this.state.sushi} buySushi={this.buySushi} />
+        <Table budget={this.state.budget} sushi={this.state.sushi} />
       </div>
     );
   }
